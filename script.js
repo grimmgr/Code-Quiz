@@ -1,8 +1,11 @@
 const header = document.querySelector('header');
+const highScoresLink = document.querySelector('#high-scores-link');
+const timeDisplay = document.querySelector('#time');
+
 
 const intro = document.querySelector('#intro');
 const startButton = document.querySelector('#start');
-const highScoresLink = document.querySelector('#high-scores-link');
+
 
 const quiz = document.querySelector('#quiz');
 const questionContainer = document.querySelector('#question');
@@ -108,9 +111,25 @@ const questions = [
     } */
 ];
 
-let time = 60;
+
+let secondsLeft = 30;
 let qIndex = 0;
 let highScoresArray = [];
+let timerInterval;
+
+
+function setTime() {
+    timerInterval = setInterval(function() {
+      secondsLeft--;
+      timeDisplay.textContent = secondsLeft;
+
+      if(secondsLeft <= 0) {
+        secondsLeft = 0;
+        timeDisplay.textContent = secondsLeft;
+        gameOver();
+      }
+    }, 1000);
+  }
 
 init();
 
@@ -121,20 +140,18 @@ function renderHighScores() {
     
         let li = document.createElement("li");
         li.textContent = highScore;
-        // li.setAttribute("data-index", i);
     
         highScoresList.appendChild(li);
       }
 }
 
 function init() {
-    
+    timeDisplay.textContent = secondsLeft;
     let storedHighScores = JSON.parse(localStorage.getItem('high-scores'));
   
     if (storedHighScores !== null) {
       highScoresArray = storedHighScores;
     }
-
     renderHighScores();
 }
 
@@ -152,8 +169,10 @@ function renderQuestion() {
 
 function startQuiz() {
     qIndex = 0;
+    secondsLeft = 30;
     intro.style.display = 'none';
     quiz.style.display = 'block';
+    setTime();
     renderQuestion();
 }
 
@@ -162,6 +181,7 @@ function rightOrWrong(event) {
         result.textContent = 'Correct!';
     } else {
         result.textContent = 'Wrong!';
+        secondsLeft = secondsLeft - 5;
     }
     setTimeout(function() {
         result.textContent = '';
@@ -179,9 +199,9 @@ function clickAnswer(event) {
 }
 
 function gameOver() {
-    questionContainer.textContent = 'All Done!';
+    clearInterval(timerInterval);
     quiz.style.display = 'none';
-    finalScore.textContent = `Your score is: ${time}`;
+    finalScore.textContent = `Your score is: ${secondsLeft}`;
     scoreForm.style.display = 'block';
  }
 
@@ -192,7 +212,7 @@ function submitScore (event) {
         return;
       }
     initialsInput.value = '';
-    let userScore = `${userInitials} - ${time}`;
+    let userScore = `${userInitials} - ${secondsLeft}`;
     highScoresArray.push(userScore);
     renderHighScores();
     storeHighScores();
@@ -204,6 +224,8 @@ function submitScore (event) {
 
 function playAgain() {
     qIndex = 0;
+    secondsLeft = 30;
+    timeDisplay.textContent = secondsLeft;
     scoreBoard.style.display = 'none';
     intro.style.display = 'block';
     header.style.display = 'block';
