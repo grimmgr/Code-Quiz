@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
+#quiz {
+    display: none;
+}
+
+#score-form {
+    display: none;
+}
+
+#score-board {
+    display: none;
+}
+
+#high-scores-link {
+    cursor: pointer;
+}

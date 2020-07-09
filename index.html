@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <p id="high-scores-link">High Scores</p>
+        <p>Time:<span id="time"></span></p>
+    </header>
+
+    <main>
+        <div id="intro">
+            <h1>Code Quiz Challenge</h1>
+            <p>Good Luck!</p>
+            <button id="start">Start</button>
+        </div>
+        
+        <div id="quiz">
+            <h2 id="question"></h2>
+            
+            <ul>
+                <li id='a'></li>
+                <li id='b'></li>
+                <li id='c'></li>
+                <li id='d'></li>
+            </ul>
+
+            <p id="result"></p>   
+        </div>
+
+        <div id="score-form">
+           <div id="your-score">
+                <h2>All Done!</h2>
+                <p id="final-score"></p>
+            </div>
+            <form method="POST">
+                <label for="initials">Enter initials:</label>
+                <input type="text" name="initials" id="initials" />
+                <button id="submit">Submit</button>
+            </form>
+        </div>
+
+        <div id="score-board">
+            <h2>High Scores</h2>
+            <ol id='high-scores'>
+                 
+            </ol>
+            <button id="play-again">Play Again</button>
+            <button id="clear-scores">Clear High Scores</button>
+    
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
