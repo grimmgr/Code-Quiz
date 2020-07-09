@@ -135,6 +135,8 @@ init();
 
 function renderHighScores() {
     highScoresList.innerHTML = '';
+    highScoresArray.sort();
+    highScoresArray.reverse();
     for (var i = 0; i < highScoresArray.length; i++) {
         let highScore = highScoresArray[i];
     
@@ -212,7 +214,7 @@ function submitScore (event) {
         return;
       }
     initialsInput.value = '';
-    let userScore = `${userInitials} - ${secondsLeft}`;
+    let userScore = `${secondsLeft} - ${userInitials}`;
     highScoresArray.push(userScore);
     renderHighScores();
     storeHighScores();
