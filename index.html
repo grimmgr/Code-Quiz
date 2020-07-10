@@ -8,21 +8,22 @@
 </head>
 <body>
     <header>
-        <p id="high-scores-link">High Scores</p>
-        <p>Time: <span id="time"></span></p>
+        <p id="high-scores-link" class="header">High Scores</p>
+        <p class="header">Time: <span id="time"></span></p>
     </header>
 
     <main>
-        <div id="intro">
+        <section id="intro">
             <h1>Code Quiz Challenge</h1>
+            <p>You have 60 seconds to complete this JavaScript quiz.  Be careful: if you click the wrong answer you lose 5 seconds off the clock!</p>
             <p>Good Luck!</p>
             <button id="start">Start</button>
-        </div>
+        </section>
         
-        <div id="quiz">
+        <section id="quiz">
             <h2 id="question"></h2>
             
-            <ul>
+            <ul id="answers">
                 <li id='a'></li>
                 <li id='b'></li>
                 <li id='c'></li>
@@ -30,29 +31,29 @@
             </ul>
 
             <p id="result"></p>   
-        </div>
+        </section>
 
-        <div id="score-form">
-           <div id="your-score">
-                <h2>All Done!</h2>
-                <p id="final-score"></p>
-            </div>
+        <section id="score-form">
+            <h2>All Done!</h2>
+            <p id="final-score"></p>
+            
             <form method="POST">
                 <label for="initials">Enter initials:</label>
                 <input type="text" name="initials" id="initials" />
                 <button id="submit">Submit</button>
             </form>
-        </div>
+        </section>
 
-        <div id="score-board">
-            <h2>High Scores</h2>
-            <ol id='high-scores'>
+        <section id="score-board">
+            <h1>High Scores</h1>
+            <ul id='high-scores'>
                  
-            </ol>
-            <button id="play-again">Play Again</button>
-            <button id="clear-scores">Clear High Scores</button>
-    
-        </div>
+            </ul>
+            <div>
+                <button id="play-again">Play Again</button>
+                <button id="clear-scores">Clear High Scores</button>
+            </div>
+        </section>
     </main>
 
     <script src="script.js"></script>

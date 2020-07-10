@@ -2,10 +2,8 @@ const header = document.querySelector('header');
 const highScoresLink = document.querySelector('#high-scores-link');
 const timeDisplay = document.querySelector('#time');
 
-
 const intro = document.querySelector('#intro');
 const startButton = document.querySelector('#start');
-
 
 const quiz = document.querySelector('#quiz');
 const questionContainer = document.querySelector('#question');
@@ -24,9 +22,6 @@ const scoreBoard = document.querySelector('#score-board');
 const highScoresList = document.querySelector('#high-scores');
 const playAgainButton = document.querySelector('#play-again');
 const clearScoresButton = document.querySelector('#clear-scores');
-
-// const yourScore = document.querySelector('#your-score');
-
 
 const questions = [
     {
@@ -52,14 +47,6 @@ const questions = [
         c: '<script ref=”myscript.js”>',
         d: '<script name=”myscript.js”>',
         answer: 'a'
-    } /* ,
-    {
-        question: 'The external JavaScript file must contain <script> tag. True or False?',
-        a: 'True',
-        b: 'False',
-        c: '',
-        d: '',
-        answer: 'b'
     },
     {
         question: 'What is the syntax for creating a function in JavaScript named as funkyFunc?',
@@ -108,15 +95,13 @@ const questions = [
         c: 'Browser',
         d: 'None of the above',
         answer: 'c'
-    } */
+    }
 ];
 
-
-let secondsLeft = 30;
+let secondsLeft = 60;
 let qIndex = 0;
 let highScoresArray = [];
 let timerInterval;
-
 
 function setTime() {
     timerInterval = setInterval(function() {
@@ -171,7 +156,7 @@ function renderQuestion() {
 
 function startQuiz() {
     qIndex = 0;
-    secondsLeft = 30;
+    secondsLeft = 60;
     intro.style.display = 'none';
     quiz.style.display = 'block';
     setTime();
@@ -180,8 +165,10 @@ function startQuiz() {
 
 function rightOrWrong(event) {
     if (event.target.id === questions[qIndex].answer) {
+        result.style.color = 'rgb(50, 250, 31)';
         result.textContent = 'Correct!';
     } else {
+        result.style.color = 'rgb(243, 14, 102)';
         result.textContent = 'Wrong!';
         secondsLeft = secondsLeft - 5;
     }
@@ -226,11 +213,11 @@ function submitScore (event) {
 
 function playAgain() {
     qIndex = 0;
-    secondsLeft = 30;
+    secondsLeft = 60;
     timeDisplay.textContent = secondsLeft;
     scoreBoard.style.display = 'none';
     intro.style.display = 'block';
-    header.style.display = 'block';
+    header.style.display = 'flex';
 }
 
 function clearScores() {
@@ -240,6 +227,7 @@ function clearScores() {
 }
 
 function seeHighScores() {
+    clearInterval(timerInterval);
     intro.style.display = 'none';
     quiz.style.display = 'none';
     scoreForm.style.display = 'none';
